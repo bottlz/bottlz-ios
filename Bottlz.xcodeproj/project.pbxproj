@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3C6CF4CD2909F0C0005C3973 /* BottlzApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6CF4CC2909F0C0005C3973 /* BottlzApp.swift */; };
-		3C6CF4CF2909F0C0005C3973 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6CF4CE2909F0C0005C3973 /* ContentView.swift */; };
+		3C6CF4CF2909F0C0005C3973 /* BottleMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6CF4CE2909F0C0005C3973 /* BottleMap.swift */; };
 		3C6CF4D12909F0C2005C3973 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C6CF4D02909F0C2005C3973 /* Assets.xcassets */; };
 		3C6CF4D42909F0C2005C3973 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C6CF4D32909F0C2005C3973 /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
@@ -16,7 +16,7 @@
 /* Begin PBXFileReference section */
 		3C6CF4C92909F0C0005C3973 /* Bottlz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bottlz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C6CF4CC2909F0C0005C3973 /* BottlzApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottlzApp.swift; sourceTree = "<group>"; };
-		3C6CF4CE2909F0C0005C3973 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		3C6CF4CE2909F0C0005C3973 /* BottleMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottleMap.swift; sourceTree = "<group>"; };
 		3C6CF4D02909F0C2005C3973 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3C6CF4D32909F0C2005C3973 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -52,7 +52,7 @@
 			isa = PBXGroup;
 			children = (
 				3C6CF4CC2909F0C0005C3973 /* BottlzApp.swift */,
-				3C6CF4CE2909F0C0005C3973 /* ContentView.swift */,
+				3C6CF4CE2909F0C0005C3973 /* BottleMap.swift */,
 				3C6CF4D02909F0C2005C3973 /* Assets.xcassets */,
 				3C6CF4D22909F0C2005C3973 /* Preview Content */,
 			);
@@ -137,7 +137,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3C6CF4CF2909F0C0005C3973 /* ContentView.swift in Sources */,
+				3C6CF4CF2909F0C0005C3973 /* BottleMap.swift in Sources */,
 				3C6CF4CD2909F0C0005C3973 /* BottlzApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -195,7 +195,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -249,7 +249,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -273,6 +273,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -302,6 +303,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
