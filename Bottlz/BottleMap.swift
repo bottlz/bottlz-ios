@@ -11,14 +11,20 @@ import MapKit
 struct BottleMap: View {
 
     @State private var region = MKCoordinateRegion(
-        center: CLLocationCoordinate2D(latitude: 42.45, longitude: -76.48),
-        latitudinalMeters: 750,
-        longitudinalMeters: 750
+        center: LocationManager.currentLocation,
+        span: MKCoordinateSpan()
     )
 
     var body: some View {
-        Map(coordinateRegion: $region, interactionModes: [.all])
-            .edgesIgnoringSafeArea(.all)
+        ZStack(alignment: .top) {
+            Map(coordinateRegion: $region, interactionModes: [],
+                showsUserLocation: true, userTrackingMode: .constant(.follow))
+                .edgesIgnoringSafeArea(.all)
+            VStack {
+                Text("Position: (\(region.center.latitude), \(region.center.longitude))")
+                Text("Zoom: \(region.span.latitudeDelta)")
+            }
+        }
     }
 }
 
