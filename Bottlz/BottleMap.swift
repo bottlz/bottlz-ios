@@ -12,7 +12,7 @@ struct BottleMap: View {
 
     @State private var region = MKCoordinateRegion(
         center: LocationManager.currentLocation,
-        span: MKCoordinateSpan()
+        span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
     )
 
     var body: some View {

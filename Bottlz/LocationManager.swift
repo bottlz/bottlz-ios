@@ -10,7 +10,7 @@ import CoreLocation
 class LocationManager: NSObject, ObservableObject {
 
     static let shared = LocationManager()
-    static let DefaultLocation = CLLocationCoordinate2D(latitude: 45.8827419, longitude: -1.1932383)
+    static let DefaultLocation = CLLocationCoordinate2D(latitude: 42.45, longitude: -76.48)
 
     static var currentLocation: CLLocationCoordinate2D {
         guard let location = shared.locationManager.location else {
