@@ -24,8 +24,8 @@ struct ContentView: View {
             .buttonStyle(.bordered)
             .padding()
         }.sheet(isPresented: $showCreateBottle) {
-            Text("Hello World")
-                .presentationDetents([.medium])
+            CreateBottleView()
+                .presentationDetents([.fraction(0.3)])
         }
     }
 }
