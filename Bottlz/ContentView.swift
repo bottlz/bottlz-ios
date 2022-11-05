@@ -2,15 +2,15 @@
 //  ContentView.swift
 //  Bottlz
 //
-//  Created by Changyuan Lin on 10/26/22.
+//  Created by Changyuan Lin on 11/4/22.
 //
 
 import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        BottleMap()
+            .edgesIgnoringSafeArea(.all)
     }
 }
 
