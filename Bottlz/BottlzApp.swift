@@ -11,7 +11,7 @@ import SwiftUI
 struct BottlzApp: App {
     var body: some Scene {
         WindowGroup {
-            BottleMap()
+            ContentView()
         }
     }
 }

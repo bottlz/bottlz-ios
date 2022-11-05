@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3C6329FE2915FA6200D41F96 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6329FD2915FA6200D41F96 /* ContentView.swift */; };
 		3C6CF4CD2909F0C0005C3973 /* BottlzApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6CF4CC2909F0C0005C3973 /* BottlzApp.swift */; };
 		3C6CF4CF2909F0C0005C3973 /* BottleMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6CF4CE2909F0C0005C3973 /* BottleMap.swift */; };
 		3C6CF4D12909F0C2005C3973 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C6CF4D02909F0C2005C3973 /* Assets.xcassets */; };
@@ -15,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3C6329FD2915FA6200D41F96 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		3C6CF4C92909F0C0005C3973 /* Bottlz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bottlz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C6CF4CC2909F0C0005C3973 /* BottlzApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottlzApp.swift; sourceTree = "<group>"; };
 		3C6CF4CE2909F0C0005C3973 /* BottleMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottleMap.swift; sourceTree = "<group>"; };
@@ -55,6 +57,7 @@
 			children = (
 				3C6CF4CC2909F0C0005C3973 /* BottlzApp.swift */,
 				3C6CF4CE2909F0C0005C3973 /* BottleMap.swift */,
+				3C6329FD2915FA6200D41F96 /* ContentView.swift */,
 				3C8D6D7D290CAE5100C5FE2A /* LocationManager.swift */,
 				3C6CF4D02909F0C2005C3973 /* Assets.xcassets */,
 				3C6CF4D22909F0C2005C3973 /* Preview Content */,
@@ -142,6 +145,7 @@
 			files = (
 				3C6CF4CF2909F0C0005C3973 /* BottleMap.swift in Sources */,
 				3C6CF4CD2909F0C0005C3973 /* BottlzApp.swift in Sources */,
+				3C6329FE2915FA6200D41F96 /* ContentView.swift in Sources */,
 				3C8D6D7E290CAE5100C5FE2A /* LocationManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -16,13 +16,13 @@ struct BottleMap: View {
     )
 
     var body: some View {
-        ZStack(alignment: .top) {
-            Map(coordinateRegion: $region, interactionModes: [],
+        ZStack() {
+            Map(coordinateRegion: $region, interactionModes: [.all],
                 showsUserLocation: true, userTrackingMode: .constant(.follow))
-                .edgesIgnoringSafeArea(.all)
             VStack {
-                Text("Position: (\(region.center.latitude), \(region.center.longitude))")
-                Text("Zoom: \(region.span.latitudeDelta)")
+                Text("Region Position: (\(region.center.latitude), \(region.center.longitude))")
+                Text("Region Zoom: \(region.span.latitudeDelta)")
+                Text("LocationManager Position: (\(LocationManager.currentLocation.latitude), \(LocationManager.currentLocation.longitude))")
             }
         }
     }
