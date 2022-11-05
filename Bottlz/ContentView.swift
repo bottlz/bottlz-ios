@@ -8,9 +8,25 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var showCreateBottle = false
+
     var body: some View {
-        BottleMap()
-            .edgesIgnoringSafeArea(.all)
+        VStack(spacing: 0.0) {
+            BottleMap()
+                .edgesIgnoringSafeArea(.all)
+            Button {
+                showCreateBottle.toggle()
+            } label: {
+                Text("Create New Bottle")
+                    .frame(maxWidth: .infinity)
+                    .padding(8)
+            }
+            .buttonStyle(.bordered)
+            .padding()
+        }.sheet(isPresented: $showCreateBottle) {
+            Text("Hello World")
+                .presentationDetents([.medium])
+        }
     }
 }
 
