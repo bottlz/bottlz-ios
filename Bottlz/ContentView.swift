@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject var bottleFetcher: BottleFetcher
+
     @State private var showCreateBottle = false
 
     var body: some View {
@@ -23,9 +25,13 @@ struct ContentView: View {
             }
             .buttonStyle(.bordered)
             .padding()
-        }.sheet(isPresented: $showCreateBottle) {
+        }
+        .sheet(isPresented: $showCreateBottle) {
             CreateBottleView()
                 .presentationDetents([.fraction(0.3)])
+        }
+        .task {
+            try? await bottleFetcher.getAllBottles()
         }
     }
 }

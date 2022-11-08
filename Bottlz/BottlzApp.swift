@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct BottlzApp: App {
+    @StateObject private var bottleFetcher = BottleFetcher()
+
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(bottleFetcher)
         }
     }
 }
