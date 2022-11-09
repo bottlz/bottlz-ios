@@ -9,6 +9,7 @@ import SwiftUI
 import MapKit
 
 struct BottleMap: View {
+    var bottles: [Bottle]
 
     @State private var region = MKCoordinateRegion(
         center: LocationManager.currentLocation,
@@ -18,7 +19,11 @@ struct BottleMap: View {
     var body: some View {
         ZStack() {
             Map(coordinateRegion: $region, interactionModes: [.all],
-                showsUserLocation: true, userTrackingMode: .constant(.follow))
+                showsUserLocation: true, userTrackingMode: .constant(.follow),
+                annotationItems: bottles)
+            { bottle in
+                MapMarker(coordinate: bottle.origin)
+            }
             VStack {
                 Text("Region Position: (\(region.center.latitude), \(region.center.longitude))")
                 Text("Region Zoom: \(region.span.latitudeDelta)")
@@ -30,6 +35,11 @@ struct BottleMap: View {
 
 struct BottleMap_Previews: PreviewProvider {
     static var previews: some View {
-        BottleMap()
+        BottleMap(bottles: [
+            Bottle(lat: 42.451, lon: -76.481),
+            Bottle(lat: 42.451, lon: -76.479),
+            Bottle(lat: 42.449, lon: -76.481),
+            Bottle(lat: 42.449, lon: -76.479)
+        ])
     }
 }
