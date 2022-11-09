@@ -10,7 +10,7 @@ import Foundation
 class BottleFetcher: ObservableObject {
     @Published var bottleData: [Bottle] = []
 
-    let baseURL = URL(string: "https://bottlz.azurewebsites.net")
+    let baseURL = URL(string: "https://bottlz.azurewebsites.net")!
     let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .millisecondsSince1970

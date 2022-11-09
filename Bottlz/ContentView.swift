@@ -14,7 +14,7 @@ struct ContentView: View {
 
     var body: some View {
         VStack(spacing: 0.0) {
-            BottleMap()
+            BottleMap(bottles: bottleFetcher.bottleData)
                 .edgesIgnoringSafeArea(.all)
             Button {
                 showCreateBottle.toggle()
@@ -39,5 +39,6 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .environmentObject(BottleFetcher())
     }
 }
