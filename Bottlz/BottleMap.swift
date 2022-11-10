@@ -22,7 +22,19 @@ struct BottleMap: View {
                 showsUserLocation: true, userTrackingMode: .constant(.follow),
                 annotationItems: bottles)
             { bottle in
-                MapMarker(coordinate: bottle.origin)
+                MapAnnotation(coordinate: bottle.origin) {
+                    Button {
+                        print("Bottle ID", bottle.id)
+                    } label: {
+                        Image("Bottle")
+                            .resizable()
+                            .renderingMode(.template)
+                            .foregroundColor(.primary)
+                            .background(in: Circle())
+                            .frame(width: 30.0, height: 30.0)
+                            .shadow(radius: 4)
+                    }
+                }
             }
             VStack {
                 Text("Region Position: (\(region.center.latitude), \(region.center.longitude))")
