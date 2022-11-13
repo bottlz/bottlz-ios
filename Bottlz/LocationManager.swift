@@ -8,23 +8,20 @@
 import CoreLocation
 
 class LocationManager: NSObject, ObservableObject {
+    private static let DefaultLocation = CLLocationCoordinate2D(latitude: 42.45, longitude: -76.48)
+    private let locationManager = CLLocationManager()
 
-    static let shared = LocationManager()
-    static let DefaultLocation = CLLocationCoordinate2D(latitude: 42.45, longitude: -76.48)
-
-    static var currentLocation: CLLocationCoordinate2D {
-        guard let location = shared.locationManager.location else {
-            return DefaultLocation
+    var currentLocation: CLLocationCoordinate2D {
+        guard let location = self.locationManager.location else {
+            return LocationManager.DefaultLocation
         }
         return location.coordinate
     }
 
-    private let locationManager = CLLocationManager()
-
-    private override init() {
+    override init() {
         super.init()
         locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
     }
