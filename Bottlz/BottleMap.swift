@@ -12,7 +12,7 @@ struct BottleMap: View {
     var bottles: [Bottle]
 
     @State private var region = MKCoordinateRegion(
-        center: LocationManager.currentLocation,
+        center: CLLocationCoordinate2D(latitude: 42.45, longitude: -76.48),
         span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
     )
 
@@ -39,7 +39,6 @@ struct BottleMap: View {
             VStack {
                 Text("Region Position: (\(region.center.latitude), \(region.center.longitude))")
                 Text("Region Zoom: \(region.span.latitudeDelta)")
-                Text("LocationManager Position: (\(LocationManager.currentLocation.latitude), \(LocationManager.currentLocation.longitude))")
             }
         }
     }
