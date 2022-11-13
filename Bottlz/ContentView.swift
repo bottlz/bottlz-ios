@@ -30,6 +30,10 @@ struct ContentView: View {
             CreateBottleView()
                 .presentationDetents([.fraction(0.3)])
         }
+        .sheet(isPresented: .constant(true)) {
+            ViewBottleView()
+                .presentationDetents([.fraction(0.75)])
+        }
         .task {
             try? await bottleFetcher.getAllBottles()
         }

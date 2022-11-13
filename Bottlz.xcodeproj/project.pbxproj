@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3C4A4A02292087CA007413B1 /* ViewBottleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4A4A01292087CA007413B1 /* ViewBottleView.swift */; };
 		3C6329FE2915FA6200D41F96 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6329FD2915FA6200D41F96 /* ContentView.swift */; };
 		3C632A0029161A3600D41F96 /* CreateBottleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6329FF29161A3600D41F96 /* CreateBottleView.swift */; };
 		3C6CF4CD2909F0C0005C3973 /* BottlzApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6CF4CC2909F0C0005C3973 /* BottlzApp.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3C4A4A01292087CA007413B1 /* ViewBottleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewBottleView.swift; sourceTree = "<group>"; };
 		3C6329FD2915FA6200D41F96 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		3C6329FF29161A3600D41F96 /* CreateBottleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateBottleView.swift; sourceTree = "<group>"; };
 		3C6CF4C92909F0C0005C3973 /* Bottlz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bottlz.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -67,6 +69,7 @@
 				3CD4D19E2916DDE300FC39D8 /* Bottle.swift */,
 				3C8B1F572918C1EE00BD0FCE /* BottleFetcher.swift */,
 				3C6329FF29161A3600D41F96 /* CreateBottleView.swift */,
+				3C4A4A01292087CA007413B1 /* ViewBottleView.swift */,
 				3C8D6D7D290CAE5100C5FE2A /* LocationManager.swift */,
 				3C6CF4D02909F0C2005C3973 /* Assets.xcassets */,
 				3C6CF4D22909F0C2005C3973 /* Preview Content */,
@@ -159,6 +162,7 @@
 				3CD4D19F2916DDE300FC39D8 /* Bottle.swift in Sources */,
 				3C6329FE2915FA6200D41F96 /* ContentView.swift in Sources */,
 				3C8D6D7E290CAE5100C5FE2A /* LocationManager.swift in Sources */,
+				3C4A4A02292087CA007413B1 /* ViewBottleView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
