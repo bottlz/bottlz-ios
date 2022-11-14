@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ViewBottleView: View {
+    @EnvironmentObject var bottleFetcher: BottleFetcher
     @Environment(\.dismiss) var dismiss
 
     var body: some View {
@@ -26,8 +27,12 @@ struct ViewBottleView: View {
                 .font(.title2)
             }
             Spacer()
-            Rectangle()
-                .aspectRatio(1.0, contentMode: .fit)
+            ZStack {
+                Rectangle()
+                    .aspectRatio(1.0, contentMode: .fit)
+                Text(bottleFetcher.selectedBottle?.id.uuidString ?? "None")
+                    .foregroundColor(.accentColor)
+            }
             Spacer()
             Button {
                 print("Pressed Edit")
@@ -45,5 +50,8 @@ struct ViewBottleView: View {
 struct ViewBottleView_Previews: PreviewProvider {
     static var previews: some View {
         ViewBottleView()
+            .environmentObject(BottleFetcher(
+                selectedBottle: Bottle(lat: 0.0, lon: 0.0)
+            ))
     }
 }

@@ -9,6 +9,7 @@ import Foundation
 
 class BottleFetcher: ObservableObject {
     @Published var bottleData: [Bottle] = []
+    @Published var selectedBottle: Bottle? = nil
 
     let baseURL = URL(string: "https://bottlz.azurewebsites.net")!
     let decoder: JSONDecoder = {
@@ -16,6 +17,11 @@ class BottleFetcher: ObservableObject {
         decoder.dateDecodingStrategy = .millisecondsSince1970
         return decoder
     }()
+
+    init(bottleData: [Bottle] = [], selectedBottle: Bottle? = nil) {
+        self.bottleData = bottleData
+        self.selectedBottle = selectedBottle
+    }
 
     enum FetchError: Error {
         case badRequest
