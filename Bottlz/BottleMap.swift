@@ -9,7 +9,8 @@ import SwiftUI
 import MapKit
 
 struct BottleMap: View {
-    var bottles: [Bottle]
+    @EnvironmentObject var bottleFetcher: BottleFetcher
+    @Binding var showViewBottle: Bool
 
     @State private var region = MKCoordinateRegion(
         center: CLLocationCoordinate2D(latitude: 42.45, longitude: -76.48),
@@ -20,11 +21,13 @@ struct BottleMap: View {
         ZStack() {
             Map(coordinateRegion: $region, interactionModes: [.all],
                 showsUserLocation: true, userTrackingMode: .constant(.follow),
-                annotationItems: bottles)
+                annotationItems: bottleFetcher.bottleData)
             { bottle in
                 MapAnnotation(coordinate: bottle.origin) {
                     Button {
                         print("Bottle ID", bottle.id)
+                        bottleFetcher.selectedBottle = bottle
+                        showViewBottle = true
                     } label: {
                         Image("Bottle")
                             .resizable()
@@ -46,11 +49,14 @@ struct BottleMap: View {
 
 struct BottleMap_Previews: PreviewProvider {
     static var previews: some View {
-        BottleMap(bottles: [
-            Bottle(lat: 42.451, lon: -76.481),
-            Bottle(lat: 42.451, lon: -76.479),
-            Bottle(lat: 42.449, lon: -76.481),
-            Bottle(lat: 42.449, lon: -76.479)
-        ])
+        BottleMap(showViewBottle: .constant(false))
+            .environmentObject(BottleFetcher(
+                bottleData: [
+                    Bottle(lat: 42.451, lon: -76.481),
+                    Bottle(lat: 42.451, lon: -76.479),
+                    Bottle(lat: 42.449, lon: -76.481),
+                    Bottle(lat: 42.449, lon: -76.479)
+                ]
+            ))
     }
 }

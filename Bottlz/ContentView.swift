@@ -11,10 +11,11 @@ struct ContentView: View {
     @EnvironmentObject var bottleFetcher: BottleFetcher
 
     @State private var showCreateBottle = false
+    @State private var showViewBottle = false
 
     var body: some View {
         VStack(spacing: 0.0) {
-            BottleMap(bottles: bottleFetcher.bottleData)
+            BottleMap(showViewBottle: $showViewBottle)
                 .edgesIgnoringSafeArea(.all)
             Button {
                 showCreateBottle.toggle()
@@ -29,6 +30,11 @@ struct ContentView: View {
         .sheet(isPresented: $showCreateBottle) {
             CreateBottleView()
                 .presentationDetents([.fraction(0.3)])
+        }
+        .sheet(isPresented: $showViewBottle,
+               onDismiss: { bottleFetcher.selectedBottle = nil }) {
+            ViewBottleView()
+                .presentationDetents([.fraction(0.75)])
         }
         .task {
             try? await bottleFetcher.getAllBottles()
