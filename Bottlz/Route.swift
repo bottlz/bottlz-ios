@@ -25,3 +25,9 @@ struct Route: Codable {
         case routeRaw = "route"
     }
 }
+
+struct RouteAnnotation: Identifiable {
+    var id: String
+    var point: CLLocationCoordinate2D
+    var portion: Double
+}

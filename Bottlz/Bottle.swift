@@ -38,6 +38,15 @@ struct Bottle: Codable, Identifiable {
         self.routes = try container.decode([Route].self, forKey: .routes)
     }
 
+    var routeAnnotations: [RouteAnnotation] {
+        routes.enumerated().flatMap { (routeIndex, route) in
+            route.route.enumerated().map { (pointIndex, point) in
+                RouteAnnotation(id: "\(self.id):\(routeIndex):\(pointIndex)",
+                                point: point, portion: Double(pointIndex) / Double(route.route.count))
+            }
+        }
+    }
+
     private enum CodingKeys: String, CodingKey {
         case id
         case created

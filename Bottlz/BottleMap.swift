@@ -21,7 +21,9 @@ struct BottleMap: View {
         ZStack() {
             Map(coordinateRegion: $region, interactionModes: [.all],
                 showsUserLocation: true, userTrackingMode: .constant(.follow),
-                annotationItems: bottleFetcher.bottleData)
+                annotationItems:
+//                    bottleFetcher.bottleData.flatMap { bottle in bottle.routeAnnotations })
+                    bottleFetcher.bottleData)
             { bottle in
                 MapAnnotation(coordinate: bottle.origin) {
                     Button {
@@ -38,6 +40,11 @@ struct BottleMap: View {
                             .shadow(radius: 4)
                     }
                 }
+//                MapAnnotation(coordinate: bottle.point) {
+//                    Circle()
+//                        .foregroundColor(Color(white: bottle.portion))
+//                        .frame(width: 3, height: 3)
+//                }
             }
             VStack {
                 Text("Region Position: (\(region.center.latitude), \(region.center.longitude))")
