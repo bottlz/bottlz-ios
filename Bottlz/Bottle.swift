@@ -15,6 +15,8 @@ struct Bottle: Codable, Identifiable {
     private var originRaw: GeoPoint?
     var origin: CLLocationCoordinate2D
 
+    var routes: [Route]
+
     init(lat: Double, lon: Double) {
         self.init(id: UUID(), created: Date(), lat: lat, lon: lon)
     }
@@ -23,6 +25,7 @@ struct Bottle: Codable, Identifiable {
         self.id = id
         self.created = created
         self.origin = CLLocationCoordinate2D(latitude: lat, longitude: lon)
+        self.routes = []
     }
 
     init(from decoder: Decoder) throws {
@@ -32,12 +35,23 @@ struct Bottle: Codable, Identifiable {
         self.originRaw = try container.decode(Bottle.GeoPoint.self, forKey: .originRaw)
         self.origin = CLLocationCoordinate2D(latitude: originRaw!.coordinates[1],
                                              longitude: originRaw!.coordinates[0])
+        self.routes = try container.decode([Route].self, forKey: .routes)
+    }
+
+    var routeAnnotations: [RouteAnnotation] {
+        routes.enumerated().flatMap { (routeIndex, route) in
+            route.route.enumerated().map { (pointIndex, point) in
+                RouteAnnotation(id: "\(self.id):\(routeIndex):\(pointIndex)",
+                                point: point, portion: Double(pointIndex) / Double(route.route.count))
+            }
+        }
     }
 
     private enum CodingKeys: String, CodingKey {
         case id
         case created
         case originRaw = "origin"
+        case routes
     }
 
     private struct GeoPoint: Codable {
