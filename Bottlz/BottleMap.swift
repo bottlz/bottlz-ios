@@ -17,6 +17,9 @@ struct BottleMap: View {
         span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
     )
 
+    @State private var currentDate = Date()
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+
     var body: some View {
         ZStack() {
             Map(coordinateRegion: $region, interactionModes: [.all],
@@ -25,7 +28,7 @@ struct BottleMap: View {
 //                    bottleFetcher.bottleData.flatMap { bottle in bottle.routeAnnotations })
                     bottleFetcher.bottleData)
             { bottle in
-                MapAnnotation(coordinate: bottle.origin) {
+                MapAnnotation(coordinate: bottle.computeCurrentLocation(currentDate: currentDate)) {
                     Button {
                         print("Bottle ID", bottle.id)
                         bottleFetcher.selectedBottle = bottle
@@ -50,6 +53,10 @@ struct BottleMap: View {
                 Text("Region Position: (\(region.center.latitude), \(region.center.longitude))")
                 Text("Region Zoom: \(region.span.latitudeDelta)")
             }
+        }
+        .onReceive(timer) { input in
+            print("Current time: \(input)")
+            currentDate = input
         }
     }
 }
