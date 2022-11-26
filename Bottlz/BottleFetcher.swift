@@ -5,7 +5,7 @@
 //  Created by Changyuan Lin on 11/6/22.
 //
 
-import Foundation
+import CoreLocation
 
 class BottleFetcher: ObservableObject {
     @Published var bottleData: [Bottle] = []
@@ -31,7 +31,10 @@ class BottleFetcher: ObservableObject {
         guard let url = URL(string: "bottles/getAll", relativeTo: baseURL) else { return }
 
         let (data, response) = try await URLSession.shared.data(for: URLRequest(url: url))
-        guard (response as? HTTPURLResponse)?.statusCode == 200 else { print("bad request"); throw FetchError.badRequest }
+        guard (response as? HTTPURLResponse)?.statusCode == 200 else {
+            print("getAllBottles error", String(data: data, encoding: .utf8)!)
+            throw FetchError.badRequest
+        }
 
         Task { @MainActor in
             try bottleData = decoder.decode(GetAllBottlesData.self, from: data).bottles
@@ -39,7 +42,33 @@ class BottleFetcher: ObservableObject {
         }
     }
 
-    private struct GetAllBottlesData: Decodable {
+    func createBottle(location: CLLocationCoordinate2D) async throws {
+        guard let url = URL(string: "bottles/create", relativeTo: baseURL) else { return }
+
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = "POST"
+        urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        let payload = try JSONEncoder().encode([
+            "location": [
+                "lat": location.latitude,
+                "lon": location.longitude
+            ]
+        ])
+
+        let (data, response) = try await URLSession.shared.upload(for: urlRequest, from: payload)
+        guard (response as? HTTPURLResponse)?.statusCode == 200 else {
+            print("createBottle error", String(data: data, encoding: .utf8)!)
+            throw FetchError.badRequest
+        }
+
+        Task { @MainActor in
+            let createdBottle = try decoder.decode(Bottle.self, from: data)
+            print("Created Bottle", createdBottle)
+            bottleData.append(createdBottle)
+        }
+    }
+
+    private struct GetAllBottlesData: Codable {
         var bottles: [Bottle]
     }
 }
