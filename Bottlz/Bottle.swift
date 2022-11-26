@@ -49,7 +49,15 @@ struct Bottle: Codable, Identifiable {
         }
     }
 
+    func isOutOfRoutes(currentDate: Date) -> Bool {
+        let coveredDistance = currentDate.timeIntervalSince(self.created) * Bottle.speed
+        let totalRouteDistance = routes.map({ route in route.distance }).reduce(0, +)
+        return coveredDistance >= totalRouteDistance
+    }
+
     func computeCurrentLocation(currentDate: Date) -> CLLocationCoordinate2D {
+        guard !routes.isEmpty else { return origin }
+
         let coveredDistance = currentDate.timeIntervalSince(self.created) * Bottle.speed
 
         var accumulatedDistance = 0.0

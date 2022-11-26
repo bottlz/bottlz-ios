@@ -37,7 +37,8 @@ struct BottleMap: View {
                         Image("Bottle")
                             .resizable()
                             .renderingMode(.template)
-                            .foregroundColor(.primary)
+                            .foregroundColor(
+                                bottle.isOutOfRoutes(currentDate: currentDate) ? .red : .primary)
                             .background(in: Circle())
                             .frame(width: 30.0, height: 30.0)
                             .shadow(radius: 4)
