@@ -8,7 +8,11 @@
 import SwiftUI
 
 struct CreateBottleView: View {
+    @EnvironmentObject var bottleFetcher: BottleFetcher
+    @EnvironmentObject var locationManager: LocationManager
     @Environment(\.dismiss) var dismiss
+
+    @State private var isCreatingBottle = false
 
     var body: some View {
         VStack {
@@ -30,12 +34,19 @@ struct CreateBottleView: View {
             Spacer()
             Button {
                 print("Pressed Confirm")
+                isCreatingBottle = true
+                Task {
+                    try await bottleFetcher.createBottle(location: locationManager.currentLocation)
+                    isCreatingBottle = false
+                    dismiss()
+                }
             } label: {
                 Text("Confirm")
                     .frame(maxWidth: .infinity)
                     .padding(8)
             }
             .buttonStyle(.bordered)
+            .disabled(isCreatingBottle)
         }
         .padding()
     }
@@ -44,5 +55,7 @@ struct CreateBottleView: View {
 struct CreateBottleView_Previews: PreviewProvider {
     static var previews: some View {
         CreateBottleView()
+            .environmentObject(BottleFetcher())
+            .environmentObject(LocationManager())
     }
 }

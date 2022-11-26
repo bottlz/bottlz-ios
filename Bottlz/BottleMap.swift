@@ -21,7 +21,7 @@ struct BottleMap: View {
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
     var body: some View {
-        ZStack() {
+        ZStack(alignment: .bottom) {
             Map(coordinateRegion: $region, interactionModes: [.all],
                 showsUserLocation: true, userTrackingMode: .constant(.follow),
                 annotationItems:
