@@ -11,7 +11,7 @@ class BottleFetcher: ObservableObject {
     @Published var bottleData: [Bottle] = []
     @Published var selectedBottle: Bottle? = nil
 
-    let baseURL = URL(string: "https://bottlz.azurewebsites.net")!
+    static let baseURL = URL(string: "https://bottlz.azurewebsites.net")!
     let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .millisecondsSince1970
@@ -27,8 +27,12 @@ class BottleFetcher: ObservableObject {
         case badRequest
     }
 
+    var selectedBottleDrawingURL: URL {
+        URL(string: "drawings/get/\(selectedBottle?.id.uuidString.lowercased() ?? "")", relativeTo: BottleFetcher.baseURL)!
+    }
+
     func getAllBottles() async throws {
-        guard let url = URL(string: "bottles/getAll", relativeTo: baseURL) else { return }
+        guard let url = URL(string: "bottles/getAll", relativeTo: BottleFetcher.baseURL) else { return }
 
         let (data, response) = try await URLSession.shared.data(for: URLRequest(url: url))
         guard (response as? HTTPURLResponse)?.statusCode == 200 else {
@@ -43,7 +47,7 @@ class BottleFetcher: ObservableObject {
     }
 
     func createBottle(location: CLLocationCoordinate2D) async throws {
-        guard let url = URL(string: "bottles/create", relativeTo: baseURL) else { return }
+        guard let url = URL(string: "bottles/create", relativeTo: BottleFetcher.baseURL) else { return }
 
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = "POST"

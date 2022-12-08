@@ -27,12 +27,12 @@ struct ViewBottleView: View {
                 .font(.title2)
             }
             Spacer()
-            ZStack {
-                Rectangle()
-                    .aspectRatio(1.0, contentMode: .fit)
-                Text(bottleFetcher.selectedBottle?.id.uuidString ?? "None")
-                    .foregroundColor(.accentColor)
+            AsyncImage(url: bottleFetcher.selectedBottleDrawingURL) { image in
+                image.resizable()
+            } placeholder: {
+                ProgressView()
             }
+            .aspectRatio(1.0, contentMode: .fit)
             Spacer()
             Button {
                 print("Pressed Edit")

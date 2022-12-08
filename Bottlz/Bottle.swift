@@ -16,6 +16,8 @@ struct Bottle: Codable, Identifiable {
 
     private var originRaw: GeoPoint?
     var origin: CLLocationCoordinate2D
+    private var endpointRaw: GeoPoint?
+    var endpoint: CLLocationCoordinate2D
 
     var routes: [Route]
 
@@ -27,6 +29,7 @@ struct Bottle: Codable, Identifiable {
         self.id = id
         self.created = created
         self.origin = CLLocationCoordinate2D(latitude: lat, longitude: lon)
+        self.endpoint = CLLocationCoordinate2D(latitude: lat, longitude: lon)
         self.routes = []
     }
 
@@ -37,6 +40,9 @@ struct Bottle: Codable, Identifiable {
         self.originRaw = try container.decode(Bottle.GeoPoint.self, forKey: .originRaw)
         self.origin = CLLocationCoordinate2D(latitude: originRaw!.coordinates[1],
                                              longitude: originRaw!.coordinates[0])
+        self.endpointRaw = try container.decode(Bottle.GeoPoint.self, forKey: .endpointRaw)
+        self.endpoint = CLLocationCoordinate2D(latitude: endpointRaw!.coordinates[1],
+                                             longitude: endpointRaw!.coordinates[0])
         self.routes = try container.decode([Route].self, forKey: .routes)
     }
 
@@ -57,6 +63,7 @@ struct Bottle: Codable, Identifiable {
 
     func computeCurrentLocation(currentDate: Date) -> CLLocationCoordinate2D {
         guard !routes.isEmpty else { return origin }
+        guard !isOutOfRoutes(currentDate: currentDate) else { return endpoint }
 
         let coveredDistance = currentDate.timeIntervalSince(self.created) * Bottle.speed
 
@@ -82,6 +89,7 @@ struct Bottle: Codable, Identifiable {
         case id
         case created
         case originRaw = "origin"
+        case endpointRaw = "endpoint"
         case routes
     }
 
